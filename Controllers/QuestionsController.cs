@@ -19,5 +19,12 @@ namespace learning_aspnetcore_react_backend_web_api.Controllers
         {
             _dataRepository = dataRepository;
         }
+
+        [HttpGet]
+        public IEnumerable<QuestionGetManyResponse> GetQuestions()
+        {
+            var questions = _dataRepository.GetQuestions();
+            return questions;
+        }
     }
 }
