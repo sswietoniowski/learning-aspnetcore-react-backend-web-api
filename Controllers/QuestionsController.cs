@@ -32,5 +32,11 @@ namespace learning_aspnetcore_react_backend_web_api.Controllers
                 return _dataRepository.GetQuestionsBySearch(search);
             }
         }
+
+        [HttpGet("unanswered")]
+        public IEnumerable<QuestionGetManyResponse> GetUnansweredQuestions()
+        {
+            return _dataRepository.GetUnansweredQuestions();
+        }
     }
 }
