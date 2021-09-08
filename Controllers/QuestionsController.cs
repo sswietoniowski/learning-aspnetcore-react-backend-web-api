@@ -84,5 +84,19 @@ namespace learning_aspnetcore_react_backend_web_api.Controllers
             _dataRepository.DeleteQuestion(questionId);
             return NoContent();
         }
+
+        [HttpPost("{questionId}/answer")]
+
+        public ActionResult<AnswerGetResponse> PostAnswer(int questionId, AnswerPostRequest answerPostRequest)
+        {
+            answerPostRequest.QuestionId = questionId;
+            var questionExists= _dataRepository.QuestionExists(questionId);
+            if (!questionExists)
+            {
+                return NotFound();
+            }
+            var savedAnswer =_dataRepository.PostAnswer(answerPostRequest);
+            return savedAnswer;
+        }
     }
 }
