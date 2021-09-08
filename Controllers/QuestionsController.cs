@@ -38,5 +38,18 @@ namespace learning_aspnetcore_react_backend_web_api.Controllers
         {
             return _dataRepository.GetUnansweredQuestions();
         }
+
+        [HttpGet("{questionId}")]
+        public ActionResult<QuestionGetSingleResponse> GetQuestion(int questionId)
+        {
+            var question = _dataRepository.GetQuestion(questionId);
+
+            if (question == null)
+            {
+                return NotFound();
+            }
+
+            return question;
+        }
     }
 }
