@@ -51,5 +51,12 @@ namespace learning_aspnetcore_react_backend_web_api.Controllers
 
             return question;
         }
+
+        [HttpPost]
+        public ActionResult<QuestionGetSingleResponse> PostQuestion(QuestionPostRequest questionPostRequest)
+        {
+            var savedQuestion = _dataRepository.PostQuestion(questionPostRequest);
+            return CreatedAtAction(nameof(GetQuestion), new { questionId = savedQuestion.QuestionId }, savedQuestion);
+        }
     }
 }
