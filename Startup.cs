@@ -82,6 +82,12 @@ namespace learning_aspnetcore_react_backend_web_api
                     => policy.Requirements.Add(new MustBeQuestionAuthorRequirement())));
             services.AddScoped<IAuthorizationHandler, MustBeQuestionAuthorHandler>();
             services.AddHttpContextAccessor();
+            services.AddCors(options =>
+                options.AddPolicy("CorsPolicy", builder =>
+                    builder
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .WithOrigins(Configuration["Frontend"])));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -100,6 +106,8 @@ namespace learning_aspnetcore_react_backend_web_api
             }
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
 
