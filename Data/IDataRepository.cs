@@ -10,10 +10,9 @@ namespace learning_aspnetcore_react_backend_web_api.Data
 
     {
         IEnumerable<QuestionGetManyResponse> GetQuestions();
-        IEnumerable<QuestionGetManyResponse>
-            GetQuestionsBySearch(string search);
-        IEnumerable<QuestionGetManyResponse>
-            GetUnansweredQuestions();
+        IEnumerable<QuestionGetManyResponse> GetQuestionsBySearch(string search);
+        IEnumerable<QuestionGetManyResponse> GetQuestionsBySearchWithPaging(string search, int pageNumber, int pageSize);
+        IEnumerable<QuestionGetManyResponse> GetUnansweredQuestions();
         QuestionGetSingleResponse GetQuestion(int questionId);
         IEnumerable<QuestionGetManyResponse> GetQuestionsWithAnswers();
         bool QuestionExists(int questionId);
