@@ -45,6 +45,8 @@ namespace learning_aspnetcore_react_backend_web_api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "learning_aspnetcore_react_backend_web_api", Version = "v1" });
             });
             services.AddScoped<IDataRepository, DataRepository>();
+            services.AddMemoryCache();
+            services.AddSingleton<IQuestionCache, QuestionCache>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
