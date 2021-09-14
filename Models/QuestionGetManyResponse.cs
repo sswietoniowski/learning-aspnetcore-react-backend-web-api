@@ -12,5 +12,6 @@ namespace learning_aspnetcore_react_backend_web_api.Models
         public string Content { get; set; }
         public string UserName { get; set; }
         public DateTime Created { get; set; }
+        public List<AnswerGetResponse> Answers { get; set; }
     }
 }

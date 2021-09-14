@@ -15,6 +15,7 @@ namespace learning_aspnetcore_react_backend_web_api.Data
         IEnumerable<QuestionGetManyResponse>
             GetUnansweredQuestions();
         QuestionGetSingleResponse GetQuestion(int questionId);
+        IEnumerable<QuestionGetManyResponse> GetQuestionsWithAnswers();
         bool QuestionExists(int questionId);
         AnswerGetResponse GetAnswer(int answerId);
         QuestionGetSingleResponse PostQuestion(QuestionPostFullRequest question);
