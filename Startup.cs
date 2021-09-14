@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 using DbUp;
 using learning_aspnetcore_react_backend_web_api.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using learning_aspnetcore_react_backend_web_api.Authorization;
 
 namespace learning_aspnetcore_react_backend_web_api
 {
@@ -73,6 +76,12 @@ namespace learning_aspnetcore_react_backend_web_api
                     Configuration["Auth0:Audience"];
 
             });
+            services.AddHttpClient();
+            services.AddAuthorization(options =>
+                options.AddPolicy("MustBeQuestionAuthor", policy
+                    => policy.Requirements.Add(new MustBeQuestionAuthorRequirement())));
+            services.AddScoped<IAuthorizationHandler, MustBeQuestionAuthorHandler>();
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -111,7 +111,7 @@ namespace learning_aspnetcore_react_backend_web_api.Controllers
             return CreatedAtAction(nameof(GetQuestion), new { questionId = savedQuestion.QuestionId }, savedQuestion);
         }
 
-        [Authorize]
+        [Authorize(Policy = "MustBeQuestionAuthor")]
         [HttpPut("{questionId}")]
         public ActionResult<QuestionGetSingleResponse> PutQuestion(int questionId, QuestionPutRequest questionPutRequest)
         {
@@ -127,7 +127,7 @@ namespace learning_aspnetcore_react_backend_web_api.Controllers
             return savedQuestion;
         }
 
-        [Authorize]
+        [Authorize(Policy = "MustBeQuestionAuthor")]
         [HttpDelete("{questionId}")]
         public ActionResult DeleteQuestion(int questionId)
         {
