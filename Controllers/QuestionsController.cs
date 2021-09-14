@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using learning_aspnetcore_react_backend_web_api.Data;
 using learning_aspnetcore_react_backend_web_api.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace learning_aspnetcore_react_backend_web_api.Controllers
 {
@@ -94,6 +95,7 @@ namespace learning_aspnetcore_react_backend_web_api.Controllers
             return question;
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult<QuestionGetSingleResponse> PostQuestion(QuestionPostRequest questionPostRequest)
         {
@@ -109,6 +111,7 @@ namespace learning_aspnetcore_react_backend_web_api.Controllers
             return CreatedAtAction(nameof(GetQuestion), new { questionId = savedQuestion.QuestionId }, savedQuestion);
         }
 
+        [Authorize]
         [HttpPut("{questionId}")]
         public ActionResult<QuestionGetSingleResponse> PutQuestion(int questionId, QuestionPutRequest questionPutRequest)
         {
@@ -124,6 +127,7 @@ namespace learning_aspnetcore_react_backend_web_api.Controllers
             return savedQuestion;
         }
 
+        [Authorize]
         [HttpDelete("{questionId}")]
         public ActionResult DeleteQuestion(int questionId)
         {
@@ -137,8 +141,8 @@ namespace learning_aspnetcore_react_backend_web_api.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpPost("{questionId}/answer")]
-
         public ActionResult<AnswerGetResponse> PostAnswer(int questionId, AnswerPostRequest answerPostRequest)
         {
             answerPostRequest.QuestionId = questionId;
