@@ -121,6 +121,30 @@ namespace learning_aspnetcore_react_backend_web_api.Data
             }
         }
 
+        public async Task<IEnumerable<QuestionGetManyResponse>>
+
+            GetUnansweredQuestionsAsync()
+
+        {
+
+            using (var connection = new
+
+                SqlConnection(_connectionString))
+
+            {
+
+                await connection.OpenAsync();
+
+                return await
+
+                    connection.QueryAsync<QuestionGetManyResponse>(
+
+                        "EXEC dbo.Question_GetUnanswered");
+
+            }
+
+        }
+
         public QuestionGetSingleResponse GetQuestion(int questionId)
         {
             using (var connection = new SqlConnection(_connectionString))
